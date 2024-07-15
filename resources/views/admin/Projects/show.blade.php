@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+	<h1>{{ $project->name_project }}</h1>
 	<div class="card mt-5">
 		<img src="" class="card-img-top" alt="">
 		<div class="card-body">

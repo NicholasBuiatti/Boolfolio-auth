@@ -43,6 +43,7 @@ class ProjectController extends Controller
             "description" => "required|min:5|max:255",
             "group" => "boolean",
             "date" => "required|date",
+            "type_id" => "required|exists:categories,id",
         ]);
 
         //CREO L'OGGETTO
