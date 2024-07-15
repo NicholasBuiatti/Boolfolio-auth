@@ -7,6 +7,7 @@
 			<div class="col-md-12">
 				<h1 class="pb-4">{{ $project->name }}</h1>
 
+				{{-- INDIVITUO SE Cè UN ERRORE E SE C'è LO STAMPO A SCHERMO --}}
 				@if ($errors->any())
 					<div class="alert alert-danger">
 						<ul class="mb-0">

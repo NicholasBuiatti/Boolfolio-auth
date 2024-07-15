@@ -10,12 +10,12 @@
 				<p class="card-text">Data: {{ $project->date }}</p>
 				{{-- RIPORTO IN ROUTE IL LINK DA SCRIVERE NELL'URL PER APRIRE LA PAGINA --}}
 				<a href="{{ route('admin.project.show', $project) }}" class="btn btn-info" href="#" role="button">Show</a>
-				<a href="{{ route('admin.project.edit', $project) }}" class="btn btn-Secondary" href="#"
+				<a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning" href="#"
 					role="button">Modify</a>
 				<form action="{{ route('admin.project.destroy', $project->id) }}" method="POST" class="d-inline">
 					@method('DELETE')
 					@csrf
-					<button type="submit" class="btn btn-danger mt-1">Delete</button>
+					<button type="submit" class="btn btn-danger">Delete</button>
 				</form>
 			</div>
 		</div>
