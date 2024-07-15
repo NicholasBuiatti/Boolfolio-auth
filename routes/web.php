@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
 //IMPORTO IL PROJECTCONTROLLER
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware(['auth'])
 
         //METTO LA RESOURCE ROUTE IN ADMIN
         Route::resource('/project', ProjectController::class);
+
+        Route::resource("/type", TypeController::class);
     });
 
 require __DIR__ . '/auth.php';

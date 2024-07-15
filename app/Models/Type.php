@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Type extends Model
 {
     use HasFactory;
 
-    //PER POTER USARE IL METODO FILL
     protected $fillable = [
-        "name_project",
+        "name",
         "description",
-        "group",
-        "date",
-        //METTO IL TYPE ID PER COLLEGARLO ALLA TABELLA TYPE
-        "type_id",
+        "icon",
     ];
 }
