@@ -11,8 +11,9 @@ class Project extends Model
 
     //PER POTER USARE IL METODO FILL
     protected $fillable = [
-        "name",
+        "name_project",
         "description",
-        "img",
+        "group",
+        "date",
     ];
 }

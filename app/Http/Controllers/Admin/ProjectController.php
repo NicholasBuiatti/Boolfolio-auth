@@ -15,7 +15,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return 'ciao';
+        //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
+        $data = [
+            "projects" => Project::all()
+        ];
+
+        //PERCORSO DELLA CARTELLA IN ROUTE
+        return view("admin.projects.index", $data);
     }
 
     /**
@@ -23,7 +29,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -31,7 +37,25 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // VALIDAZIONE
+        $data = $request->validate([
+            "name_project" => "required|min:3|max:200",
+            "description" => "required|min:5|max:255",
+            "group" => "boolean",
+            "date" => "required|date",
+        ]);
+
+        //CREO L'OGGETTO
+        $newProject = new Project();
+
+        //POPOLO L'OGGETTO CREANDO L'ISTANZA
+        $newProject->fill($data);
+
+        //SALVO SUL DB
+        $newProject->save();
+
+        //RITORNO LA ROTTA URL
+        return redirect()->route('admin.project.show', $newProject);
     }
 
     /**
@@ -39,7 +63,11 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $data = [
+            "project" => $project
+        ];
+
+        return view("admin.projects.show", $data);
     }
 
     /**
@@ -47,7 +75,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $data = [
+            "project" => $project
+        ];
+
+        return view("admin.projects.edit", $data);
     }
 
     /**
@@ -55,7 +87,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $project->update($data);
+
+        return redirect()->route('admin.project.show', $project->id);
     }
 
     /**
@@ -63,6 +99,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.project.index');
     }
 }
