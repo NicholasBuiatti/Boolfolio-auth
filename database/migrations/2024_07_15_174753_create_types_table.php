@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
 
-            $table->char("name", 100);
+            $table->string("name");
             $table->text("description");
             $table->char("icon", 100);
 

@@ -14,27 +14,27 @@ class TypeSeeder extends Seeder
     public function run(): void
     {
         $type = new Type();
-        $type->Name = "Front-end";
-        $type->Description = "alloram saportis magius rembus.";
-        $type->Icon = "fa-solid fa-snowman";
+        $type->name = "Front-end";
+        $type->description = "alloram saportis magius rembus.";
+        $type->icon = "fa-solid fa-snowman";
         $type->save();
 
         $type = new Type();
-        $type->Name = "Back-end";
-        $type->Description = "alloram saportis magius rembus.";
-        $type->Icon = "fa-brands fa-font-awesome";
+        $type->name = "Back-end";
+        $type->description = "ciao.";
+        $type->icon = "fa-brands fa-font-awesome";
         $type->save();
 
         $type = new Type();
-        $type->Name = "Full-stack";
-        $type->Description = "alloram saportis magius rembus.";
-        $type->Icon = "fa-solid fa-ruler-horizontal";
+        $type->name = "Full-stack";
+        $type->description = "salve.";
+        $type->icon = "fa-solid fa-ruler-horizontal";
         $type->save();
 
         $type = new Type();
-        $type->Name = "Design";
-        $type->Description = "alloram saportis magius rembus.";
-        $type->Icon = "fa-solid fa-pen-nib";
+        $type->name = "Design";
+        $type->description = "alloram saportis magius rembus.";
+        $type->icon = "fa-solid fa-pen-nib";
         $type->save();
     }
 }

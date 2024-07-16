@@ -31,7 +31,7 @@ Route::middleware(['auth'])
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        //METTO LA RESOURCE ROUTE IN ADMIN
+        //METTO LA RESOURCE ROUTE IN ADMIN CHE MI CAMBIA TUTTE LE ROTTE NEL NOME CHE VOGLIO
         Route::resource('/project', ProjectController::class);
 
         Route::resource("/type", TypeController::class);

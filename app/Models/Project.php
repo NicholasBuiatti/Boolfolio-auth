@@ -18,4 +18,10 @@ class Project extends Model
         //METTO IL TYPE ID PER COLLEGARLO ALLA TABELLA TYPE
         "type_id",
     ];
+
+    //Tutti i Project avranno un metodo che restituisce il type a cui appartengono
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

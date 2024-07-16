@@ -10,6 +10,9 @@
 			@if ($project->group == true)
 				<p class="card-text">Il progetto è stato fatto in gruppo</p>
 			@endif
+			<p class="card-text my-4">
+				Categoria: <a href="{{ route('admin.type.show', $project->id) }}">{{ $project->type->name }}</a>
+			</p>
 			<p class="card-text"><small class="text-muted">{{ $project->date }}</small></p>
 		</div>
 	</div>

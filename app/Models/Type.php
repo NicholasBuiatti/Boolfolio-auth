@@ -14,4 +14,10 @@ class Type extends Model
         "description",
         "icon",
     ];
+
+    //Dalle Type recupera i Projects collegati
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
