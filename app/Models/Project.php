@@ -20,6 +20,7 @@ class Project extends Model
     ];
 
     //Tutti i Project avranno un metodo che restituisce il type a cui appartengono
+    //USO IL SINGOLARE SE DAL PROGETTO PRENDO UN SOLO TIPO
     public function type()
     {
         return $this->belongsTo(Type::class);

@@ -16,6 +16,7 @@ class Type extends Model
     ];
 
     //Dalle Type recupera i Projects collegati
+    //USO IL PLURALE SE AD UN TIPO SONO COLLEGATI PIù PROGETTI
     public function projects()
     {
         return $this->hasMany(Project::class);
