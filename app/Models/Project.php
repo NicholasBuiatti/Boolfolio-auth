@@ -25,4 +25,10 @@ class Project extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    //RELAZIONE MOLTI A MOLTI CON IL LINGUAGGI
+    public function lenguages()
+    {
+        return $this->belongsToMany(Lenguage::class);
+    }
 }

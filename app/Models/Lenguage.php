@@ -14,4 +14,9 @@ class Lenguage extends Model
         "description",
         "icon",
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }
