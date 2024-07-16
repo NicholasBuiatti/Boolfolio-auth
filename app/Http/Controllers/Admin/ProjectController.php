@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 //USO IL MODELLO PROJECT
 use App\Models\Project;
+use App\Models\Type;
 //USO IL CONTROLLER DI BASE
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,8 @@ class ProjectController extends Controller
     {
         //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
         $data = [
-            "projects" => Project::all()
+            "projects" => Project::all(),
+            "types" => Type::all()
         ];
 
         //PERCORSO DELLA CARTELLA IN ROUTE
@@ -29,7 +31,12 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
+        $data = [
+            "types" => Type::all()
+        ];
+
+        return view('admin.projects.create', $data);
     }
 
     /**
@@ -77,7 +84,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $data = [
-            "project" => $project
+            "project" => $project,
+            "types" => Type::all()
         ];
 
         return view("admin.projects.edit", $data);
