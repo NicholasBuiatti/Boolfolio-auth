@@ -35,17 +35,12 @@
 			<div class="mb-3 col-3">
 				<label class="form-label">Tipo:</label>
 				<div>
-					<select name="type_id" class="form-select @error('type_id') is-invalid @enderror" required autofocus>
+					<select name="type_id" class="form-select" required autofocus>
 						<option value="" selected></option>
 						@foreach ($types as $type)
 							<option value="{{ $type->id }}">{{ $type->name }}</option>
 						@endforeach
 					</select>
-					@error('type_id')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
 				</div>
 			</div>
 		</div>

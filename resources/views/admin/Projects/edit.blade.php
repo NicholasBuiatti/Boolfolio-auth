@@ -3,10 +3,9 @@
 @section('content')
 	<div class="container-fluid mt-4">
 		<div class="row justify-content-center">
+			<h1 class="mb-4">Stai modificando il progetto: {{ $project->name_project }}</h1>
 
 			<div class="col-md-12">
-				<h1 class="pb-4">{{ $project->name }}</h1>
-
 				{{-- INDIVITUO SE Cè UN ERRORE E SE C'è LO STAMPO A SCHERMO --}}
 				@if ($errors->any())
 					<div class="alert alert-danger">
@@ -48,17 +47,12 @@
 						<div class="mb-3 col-3">
 							<label class="form-label">Tipo:</label>
 							<div>
-								<select name="type_id" class="form-select @error('type_id') is-invalid @enderror" required autofocus>
-									<option value="" selected></option>
+								<select name="type_id" class="form-select" required autofocus>
+									<option value="" selected>{{ $project->type->name }}</option>
 									@foreach ($types as $type)
 										<option value="{{ $type->id }}">{{ $type->name }}</option>
 									@endforeach
 								</select>
-								@error('type_id')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
 							</div>
 						</div>
 					</div>

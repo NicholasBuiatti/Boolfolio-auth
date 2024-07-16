@@ -31,6 +31,7 @@
 				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
 					<div class="position-sticky pt-3">
 						<ul class="nav flex-column">
+							<li class="nav-link text-white">Buongiorno {{ Auth::user()->name }}</li>
 
 							<li class="nav-item">
 								<a class="nav-link text-white" href="/">
@@ -48,21 +49,21 @@
 							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary' : '' }}"
 									href="{{ route('admin.project.index') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Projects
+									<i class="fa-solid fa-table-list fa-lg fa-fw"></i> Projects
 								</a>
 							</li>
 
 							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.project.create' ? 'bg-secondary' : '' }}"
 									href="{{ route('admin.project.create') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Import New Project
+									<i class="fa-solid fa-plus fa-lg fa-fw"></i> Import New Project
 								</a>
 							</li>
 
 							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary' : '' }}"
 									href="{{ route('admin.type.index') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i>Types of Works
+									<i class="fa-solid fa-keyboard fa-lg fa-fw"></i> Types of Works
 								</a>
 							</li>
 
@@ -80,6 +81,7 @@
 						</ul>
 
 					</div>
+
 				</nav>
 
 				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -87,7 +89,6 @@
 				</main>
 			</div>
 		</div>
-
 	</div>
 </body>
 
