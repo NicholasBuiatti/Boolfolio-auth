@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController; //<---- Import del controlle
 //IMPORTO IL PROJECTCONTROLLER
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\LenguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::middleware(['auth'])
         Route::resource('/project', ProjectController::class);
 
         Route::resource("/type", TypeController::class);
+
+        Route::resource("/lenguage", LenguageController::class);
     });
 
 require __DIR__ . '/auth.php';
