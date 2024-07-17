@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Type;
 //USO IL CONTROLLER DI BASE
 use App\Http\Controllers\Controller;
+//COMPONENTI PER L'IMPORTAZIONE E VERIFICA IMMAGINI
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 

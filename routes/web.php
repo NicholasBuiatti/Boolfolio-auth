@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController; //<---- Import del controlle
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\LenguageController;
+use App\Http\Controllers\Guest\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ use App\Http\Controllers\Admin\LenguageController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/projects', [UserController::class, 'projects_view'])->name('projects_view');
+Route::get('/types', [UserController::class, 'types_view'])->name('types_view');
+Route::get('/languages', [UserController::class, 'languages_view'])->name('languages_view');
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
