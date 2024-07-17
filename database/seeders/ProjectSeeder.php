@@ -15,28 +15,15 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $newProject = new Project();
-        $newProject->name_project = 'Progetto 1';
-        $newProject->description = 'Il progetto Laravel 1';
-        $newProject->group = true;
-        $newProject->date = now();
-        $newProject->type_id = $faker->numberBetween(1, 4);
-        $newProject->save();
+        for ($i = 0; $i < 10; $i++) {
 
-        $newProject = new Project();
-        $newProject->name_project = 'Progetto 2';
-        $newProject->description = 'Il progetto Laravel 2';
-        $newProject->group = false;
-        $newProject->date = now();
-        $newProject->type_id = $faker->numberBetween(1, 4);
-        $newProject->save();
-
-        $newProject = new Project();
-        $newProject->name_project = 'Progetto 3';
-        $newProject->description = 'Il progetto Laravel 3';
-        $newProject->group = true;
-        $newProject->date = now();
-        $newProject->type_id = $faker->numberBetween(1, 4);
-        $newProject->save();
+            $newProject = new Project();
+            $newProject->name_project = $faker->sentence(3);
+            $newProject->description = $faker->sentence(20);
+            $newProject->img = "https://picsum.photos/id/" . rand(1, 500) . "/1600/900";
+            $newProject->date = now();
+            $newProject->type_id = $faker->numberBetween(1, 4);
+            $newProject->save();
+        }
     }
 }
