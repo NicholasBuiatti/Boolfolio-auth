@@ -8,6 +8,8 @@ use App\Models\Project;
 use App\Models\Type;
 //USO IL CONTROLLER DI BASE
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -47,14 +49,21 @@ class ProjectController extends Controller
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
+            "img" => "",
             "description" => "required|min:5|max:255",
             "group" => "boolean",
-            "date" => "required|date",
-            "type_id" => "required|exists:categories,id",
+            "date" => "required",
+            "type_id" => "required",
         ]);
 
         //CREO L'OGGETTO
         $newProject = new Project();
+
+        if ($request->has('img')) {
+
+            $image_path = Storage::put('uploads', $request->img);
+            $data['img'] = $image_path;
+        }
 
         //POPOLO L'OGGETTO CREANDO L'ISTANZA
         $newProject->fill($data);
@@ -108,6 +117,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->img && !Str::start($project->img, 'http')) {
+            // not null and not startingn with http
+            Storage::delete($project->img);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.project.index');

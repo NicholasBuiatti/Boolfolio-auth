@@ -12,6 +12,7 @@ class Project extends Model
     //PER POTER USARE IL METODO FILL
     protected $fillable = [
         "name_project",
+        "img",
         "description",
         "group",
         "date",

@@ -13,12 +13,17 @@
 		</div>
 	@endif
 
-	<form action="{{ route('admin.project.store') }}" method="POST">
+	<form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
 		<div class="mb-3">
 			<label class="form-label">Titolo:</label>
 			<input type="text" class="form-control" name="name_project">
+		</div>
+
+		<div class="mb-3">
+			<label for="img" class="form-label">Immagine:</label>
+			<input class="form-control" type="file" name="img" id="img">
 		</div>
 
 		<div class="mb-3">
