@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Project_LenguageTableSeeder extends Seeder
+class Project_LanguageTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -27,13 +27,13 @@ class Project_LenguageTableSeeder extends Seeder
             if (!in_array($concNum, $combNum)) {
                 $data[] = [
                     'project_id' => $projectId,
-                    'lenguage_id' => $languageId,
+                    'language_id' => $languageId,
                 ];
 
                 // SE NON ESISTE GIà AGGIUNGO IL NUMERO ALL'ARRAY DEI NUMERI COMBINATI
                 $combNum[] = $concNum;
             }
         }
-        DB::table('project_lenguage')->insert($data);
+        DB::table('project_language')->insert($data);
     }
 }

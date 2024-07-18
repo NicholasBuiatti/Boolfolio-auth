@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Lenguage;
+use App\Models\Language;
 use App\Models\Project;
 use App\Models\Type;
 
@@ -22,7 +22,7 @@ class UserController extends Controller
     }
     public function languages_view()
     {
-        $languages = Lenguage::all();
+        $languages = Language::all();
         return view('languages_view', compact('languages'));
     }
 }

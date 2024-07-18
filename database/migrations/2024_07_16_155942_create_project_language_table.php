@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_lenguage', function (Blueprint $table) {
+        Schema::create('project_language', function (Blueprint $table) {
             $table->id();
 
             //VERSIONE BREVE CHE CAPISCE LARAVEL IN AUTOMATICO DA DOVE PESCARE
@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('project_id');
             // $table->foreign('project_id')->references('id')->on('projects')
 
-            $table->foreignId('lenguage_id')->constrained();
+            $table->foreignId('language_id')->constrained();
 
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_lenguage');
+        Schema::dropIfExists('project_language');
     }
 };

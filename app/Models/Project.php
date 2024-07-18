@@ -28,8 +28,8 @@ class Project extends Model
     }
 
     //RELAZIONE MOLTI A MOLTI CON IL LINGUAGGI
-    public function lenguages()
+    public function languages()
     {
-        return $this->belongsToMany(Lenguage::class);
+        return $this->belongsToMany(Language::class);
     }
 }

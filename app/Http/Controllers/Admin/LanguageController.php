@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lenguage;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
-class LenguageController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return 'Lenguage';
+        return 'Language';
     }
 
     /**
@@ -35,7 +35,7 @@ class LenguageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lenguage $lenguage)
+    public function show(Language $language)
     {
         //
     }
@@ -43,7 +43,7 @@ class LenguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lenguage $lenguage)
+    public function edit(Language $language)
     {
         //
     }
@@ -51,7 +51,7 @@ class LenguageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lenguage $lenguage)
+    public function update(Request $request, Language $language)
     {
         //
     }
@@ -59,7 +59,7 @@ class LenguageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lenguage $lenguage)
+    public function destroy(Language $language)
     {
         //
     }
