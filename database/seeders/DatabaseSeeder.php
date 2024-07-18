@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             LanguageSeeder::class,
             ProjectSeeder::class,
-            Project_LanguageTableSeeder::class,
+            Language_ProjectTableSeeder::class,
         ]);
     }
 }

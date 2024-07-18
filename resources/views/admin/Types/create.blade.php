@@ -48,26 +48,6 @@
 					</select>
 				</div>
 			</div>
-
-			<div class="mb-4 row">
-				<label for="languages" class="col-md-2 col-form-label text-md-right">Linguaggi</label>
-				<div class="col-md-10">
-					@foreach ($languages as $language)
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="languages[]" value="{{ $language->id }}"
-								id="language{{ $language->id }}">
-							<label class="form-check-label" for="language{{ $language->id }}">
-								{{ $language->name }}
-							</label>
-						</div>
-					@endforeach
-					@error('languages')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
-				</div>
-			</div>
 		</div>
 
 		<div class="mb-3">

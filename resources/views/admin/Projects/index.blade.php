@@ -8,6 +8,14 @@
 			<div class="card-img-overlay">
 				<h5 class="card-title">Titolo: {{ $project->name_project }}</h5>
 				<p class="card-text">Data: {{ $project->date }}</p>
+				<p>linguaggio
+				<ul>
+					@foreach ($project->languages as $language)
+						<li>{{ $language->name }}</li>
+					@endforeach
+				</ul>
+
+				</p>
 				{{-- RIPORTO IN ROUTE IL LINK DA SCRIVERE NELL'URL PER APRIRE LA PAGINA --}}
 				<a href="{{ route('admin.project.show', $project) }}" class="btn btn-info" href="#" role="button">Show</a>
 				<a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning" href="#"

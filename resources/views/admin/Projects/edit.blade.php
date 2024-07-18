@@ -57,6 +57,26 @@
 						</div>
 					</div>
 
+					<div class="mb-4 row">
+						<label for="languages" class="col-md-2 col-form-label text-md-right">Linguaggi</label>
+						<div class="col-md-10">
+							@foreach ($languages as $language)
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" name="languages[]" value="{{ $language->id }}"
+										id="language{{ $language->id }}" @checked(in_array($language->id, old('languages', $relations)))>
+									<label class="form-check-label" for="language{{ $language->id }}">
+										{{ $language->name }}
+									</label>
+								</div>
+							@endforeach
+							@error('languages')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+					</div>
+
 					<div class="mb-3">
 						<a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary">Annulla</a>
 						<button type="submit" class="btn btn-primary">Salva</a>

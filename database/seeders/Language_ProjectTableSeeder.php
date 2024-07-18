@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Project_LanguageTableSeeder extends Seeder
+class Language_ProjectTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -34,6 +34,6 @@ class Project_LanguageTableSeeder extends Seeder
                 $combNum[] = $concNum;
             }
         }
-        DB::table('project_language')->insert($data);
+        DB::table('language_project')->insert($data);
     }
 }

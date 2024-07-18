@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_language', function (Blueprint $table) {
+        Schema::create('language_project', function (Blueprint $table) {
             $table->id();
 
             //VERSIONE BREVE CHE CAPISCE LARAVEL IN AUTOMATICO DA DOVE PESCARE
