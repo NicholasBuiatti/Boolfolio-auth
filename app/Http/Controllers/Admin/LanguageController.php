@@ -13,7 +13,13 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return 'Language';
+        $languages = Language::all();
+
+        $data = [
+            "languages" => $languages
+        ];
+
+        return view("admin.languages.index", $data);
     }
 
     /**
@@ -21,7 +27,12 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
+        $data = [
+            "languages" => Language::all(),
+        ];
+
+        return view('admin.languages.create', $data);
     }
 
     /**
@@ -29,7 +40,24 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // VALIDAZIONE
+        $data = $request->validate([
+            "name" => "required|min:3|max:200",
+            "description" => "required|min:5|max:255",
+            "icon" => "required|min:5|max:255",
+        ]);
+
+        //CREO L'OGGETTO
+        $newLanguage = new Language();
+
+        //POPOLO L'OGGETTO CREANDO L'ISTANZA
+        $newLanguage->fill($data);
+
+        //SALVO SUL DB
+        $newLanguage->save();
+
+        //RITORNO LA ROTTA URL
+        return redirect()->route('admin.language.show', $newLanguage);
     }
 
     /**
@@ -37,7 +65,11 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
+        $data = [
+            "type" => $language
+        ];
+
+        return view("admin.languages.show", $data);
     }
 
     /**
@@ -45,7 +77,11 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
+        $data = [
+            "language" => $language,
+        ];
+
+        return view("admin.languages.edit", $data);
     }
 
     /**
@@ -53,7 +89,16 @@ class LanguageController extends Controller
      */
     public function update(Request $request, Language $language)
     {
-        //
+        // VALIDAZIONE
+        $data = $request->validate([
+            "name" => "required|min:3|max:200",
+            "description" => "required|min:5|max:255",
+            "icon" => "required|min:5|max:255",
+        ]);
+
+        $language->update($data);
+
+        return redirect()->route('admin.language.show', $language->id);
     }
 
     /**
@@ -61,6 +106,8 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        $language->delete();
+
+        return redirect()->route('admin.language.index');
     }
 }

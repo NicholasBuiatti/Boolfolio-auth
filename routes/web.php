@@ -41,7 +41,7 @@ Route::middleware(['auth'])
 
         Route::resource("/type", TypeController::class);
 
-        Route::resource("/lenguage", LanguageController::class);
+        Route::resource("/language", LanguageController::class);
     });
 
 require __DIR__ . '/auth.php';

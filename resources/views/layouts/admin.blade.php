@@ -67,6 +67,12 @@
 								</a>
 							</li>
 
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.language.index' ? 'bg-secondary' : '' }}"
+									href="{{ route('admin.language.index') }}">
+									<i class="fa-solid fa-keyboard fa-lg fa-fw"></i> Languages
+								</a>
+							</li>
 
 							<li class="nav-item">
 								<a class="nav-link text-white" href="{{ route('logout') }}"
