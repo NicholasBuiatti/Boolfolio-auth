@@ -127,6 +127,11 @@ class ProjectController extends Controller
             'languages.*' => 'exists:languages,id',
         ]);
 
+        if ($project->img && !Str::startsWith($project->img, 'http')) {
+            // not null and not startingn with http
+            Storage::delete($project->img);
+        }
+
         $project->update($data);
 
         if (isset($data['languages'])) {

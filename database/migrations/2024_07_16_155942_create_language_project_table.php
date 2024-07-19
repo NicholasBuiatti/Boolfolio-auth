@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
 
             //VERSIONE BREVE CHE CAPISCE LARAVEL IN AUTOMATICO DA DOVE PESCARE
-            $table->foreignId('project_id')->constrained();
+            // $table->foreignId('project_id')->constrained();
             //VERSIONE ESTESA
-            // $table->unsignedBigInteger('project_id');
-            // $table->foreign('project_id')->references('id')->on('projects')
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('language_id');
 
-            $table->foreignId('language_id')->constrained();
-
+            $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete();
+            $table->foreign('language_id')->references('id')->on('languages')->cascadeOnDelete();
             $table->timestamps();
         });
     }
