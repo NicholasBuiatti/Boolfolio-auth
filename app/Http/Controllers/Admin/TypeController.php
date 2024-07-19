@@ -29,7 +29,12 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
+        $data = [
+            "types" => Type::all(),
+        ];
+
+        return view('admin.types.create', $data);
     }
 
     /**
@@ -37,7 +42,24 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // VALIDAZIONE
+        $data = $request->validate([
+            "name" => "required|min:3|max:200",
+            "description" => "required|min:5|max:255",
+            "icon" => "required|min:5|max:255",
+        ]);
+
+        //CREO L'OGGETTO
+        $newType = new Type();
+
+        //POPOLO L'OGGETTO CREANDO L'ISTANZA
+        $newType->fill($data);
+
+        //SALVO SUL DB
+        $newType->save();
+
+        //RITORNO LA ROTTA URL
+        return redirect()->route('admin.type.show', $newType);
     }
 
     /**
@@ -57,7 +79,11 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        $data = [
+            "type" => $type,
+        ];
+
+        return view("admin.types.edit", $data);
     }
 
     /**
@@ -65,7 +91,16 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        // VALIDAZIONE
+        $data = $request->validate([
+            "name" => "required|min:3|max:200",
+            "description" => "required|min:5|max:255",
+            "icon" => "required|min:5|max:255",
+        ]);
+
+        $type->update($data);
+
+        return redirect()->route('admin.type.show', $type->id);
     }
 
     /**
@@ -73,6 +108,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.type.index');
     }
 }

@@ -10,8 +10,12 @@
 						<h2 class="card-title">
 							<a href="{{ route('admin.type.show', $type) }}">{{ $type->name }}</a>
 						</h2>
-						<a class="btn btn-secondary" href="#" role="button">Modify</a>
-						<a class="btn btn-danger" href="#" role="button">Delete</a>
+						<a class="btn btn-secondary" href="{{ route('admin.type.edit', $type->id) }}" role="button">Modify</a>
+						<form action="{{ route('admin.type.destroy', $type->id) }}" method="POST" class="d-inline">
+							@method('DELETE')
+							@csrf
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
 					</div>
 				</div>
 			</div>
