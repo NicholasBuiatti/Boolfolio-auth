@@ -10,7 +10,6 @@
 
 	<h1>{{ $project->name_project }}</h1>
 	<div class="card mt-5">
-		@dump($project)
 		<img
 			src="{{ $project->img = Str::startsWith($project->img, 'https') ? $project->img : asset('storage/' . $project->img) }}"
 			class="card-img-top" alt="" style="height: 18rem">

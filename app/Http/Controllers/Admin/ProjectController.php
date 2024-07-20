@@ -135,15 +135,12 @@ class ProjectController extends Controller
             $image_path = Storage::put('uploads', $request->img);
             $data['img'] = $image_path;
 
-            // if ($project->img && !Str::startsWith($project->img, 'http')) {
+            if ($project->img && !Str::startsWith($project->img, 'http')) {
 
-            //     // not null and not startingn with http
-            //     Storage::delete($project->img);
-            // }
-
-            //dd($image_path, $val_data);
+                // not null and not startingn with http
+                Storage::delete($project->img);
+            }
         }
-
 
         $project->update($data);
 
