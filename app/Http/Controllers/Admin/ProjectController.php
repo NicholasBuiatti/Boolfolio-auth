@@ -51,7 +51,7 @@ class ProjectController extends Controller
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
-            "img" => "image",
+            "img" => "",
             "description" => "nullable|min:100",
             "git_URL" => "required",
             "date" => "required|date",
@@ -120,20 +120,30 @@ class ProjectController extends Controller
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
-            "img" => "image",
+            "img" => "",
             "description" => "nullable|min:100",
             "git_URL" => "required",
             "date" => "required|date",
-            "type_id" => "required|exists:types,id",
-            'languages' => "required|array",
+            "type_id" => "exists:types,id",
+            'languages' => "array",
             //OGNI ELEMENTO DELL'ARRAY DEVE ESSERE NELLA TABELLA LANGUAGES
             'languages.*' => "exists:languages,id",
         ]);
 
-        if ($project->img && !Str::startsWith($project->img, 'http')) {
-            // not null and not startingn with http
-            Storage::delete($project->img);
+        if ($request->has('img')) {
+            // save the image
+            $image_path = Storage::put('uploads', $request->img);
+            $data['img'] = $image_path;
+
+            // if ($project->img && !Str::startsWith($project->img, 'http')) {
+
+            //     // not null and not startingn with http
+            //     Storage::delete($project->img);
+            // }
+
+            //dd($image_path, $val_data);
         }
+
 
         $project->update($data);
 
@@ -141,7 +151,7 @@ class ProjectController extends Controller
             $project->languages()->sync($data['languages']);
         }
 
-        return redirect()->route('admin.project.show', $project->id);
+        return redirect()->route('admin.project.show', $project->id)->with('message', 'Repo modificata con successo!');
     }
 
     /**

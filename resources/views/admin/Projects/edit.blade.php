@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="col-md-12">
-				<form action="{{ route('admin.project.update', $project) }}" method="POST">
+				<form action="{{ route('admin.project.update', $project) }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PATCH')
 
@@ -39,8 +39,14 @@
 					</div>
 
 					<div class="mb-3">
-						<label class="form-label">URL immagine:</label>
-						<input class="form-control" name="img" value="{{ $project->img }}">
+
+						<label for="img" class="form-label">File immagine:</label>
+						@if (Str::startsWith($project->img, 'http'))
+							<img width="140" src="{{ $project->img }}" alt="">
+						@else
+							<img width="140" src="{{ asset('storage/' . $project->img) }}" alt="">
+						@endif
+						<input class="form-control" type="file" name="img" id="img">
 					</div>
 
 					<div class="mb-3">
@@ -61,7 +67,7 @@
 						<div class="mb-3 col-3">
 							<label class="form-label">Tipo:</label>
 							<div>
-								<select name="type_id" class="form-select" required autofocus>
+								<select name="type_id" class="form-select" autofocus>
 									<option value="" class="@error('type') is-invalid @enderror" selected>{{ $project->type->name }}</option>
 									@foreach ($types as $type)
 										<option value="{{ $type->id }}">{{ $type->name }}</option>
