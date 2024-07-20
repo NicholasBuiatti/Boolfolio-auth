@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1 class="text-center mb-5">Ecco la lista di tutti i progetti</h1>
+	<h1 class="text-center mb-3">PROGETTI:</h1>
+	{{ $projects->links('pagination::bootstrap-5') }}
 	@foreach ($projects as $project)
 		<div class="card bg-dark text-white mb-4" style="height: 20rem">
 			<img

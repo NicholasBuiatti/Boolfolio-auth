@@ -22,7 +22,7 @@ class ProjectController extends Controller
     {
         //PRENDO TUTTI I DATI DAL DB E LI METTO NELL'ARRAY DATA
         $data = [
-            "projects" => Project::all(),
+            "projects" => Project::OrderByDesc('id')->paginate(6),
         ];
 
         //PERCORSO DELLA CARTELLA IN ROUTE
