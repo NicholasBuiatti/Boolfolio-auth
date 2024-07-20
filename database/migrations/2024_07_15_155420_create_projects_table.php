@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->char('name_project', 100);
             $table->text('img')->nullable();
-            $table->text('description');
-            $table->boolean('group')->nullable();
+            $table->text('description')->nullable();
+            $table->text('git_URL');
             $table->date('date');
 
             $table->timestamps();

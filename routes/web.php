@@ -20,11 +20,8 @@ use App\Http\Controllers\Guest\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-Route::get('/projects', [UserController::class, 'projects_view'])->name('projects_view');
-Route::get('/types', [UserController::class, 'types_view'])->name('types_view');
-Route::get('/languages', [UserController::class, 'languages_view'])->name('languages_view');
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo

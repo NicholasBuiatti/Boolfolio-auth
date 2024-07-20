@@ -21,6 +21,7 @@ class ProjectSeeder extends Seeder
             $newProject->name_project = $faker->sentence(3);
             $newProject->description = $faker->sentence(20);
             $newProject->img = "https://picsum.photos/id/" . rand(1, 500) . "/1600/900";
+            $newProject->git_URL = "https://github.com/NicholasBuiatti/Boolfolio.git";
             $newProject->date = now();
             $newProject->type_id = $faker->numberBetween(1, 4);
             $newProject->save();

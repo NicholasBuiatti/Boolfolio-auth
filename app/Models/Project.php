@@ -14,7 +14,7 @@ class Project extends Model
         "name_project",
         "img",
         "description",
-        "group",
+        "git_URL",
         "date",
         //METTO IL TYPE ID PER COLLEGARLO ALLA TABELLA TYPE
         "type_id",

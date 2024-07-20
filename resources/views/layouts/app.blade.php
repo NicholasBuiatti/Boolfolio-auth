@@ -45,18 +45,9 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<!-- Left Side Of Navbar -->
 					<ul class="navbar-nav me-auto">
-						<li class="nav-item">
+						{{-- <li class="nav-item">
 							<a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ url('/projects') }}">{{ __('Projects') }}</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ url('/types') }}">{{ __('Types of Work') }}</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ url('/languages') }}">{{ __('Languages') }}</a>
-						</li>
+						</li> --}}
 					</ul>
 
 					<!-- Right Side Of Navbar -->

@@ -51,18 +51,20 @@ class ProjectController extends Controller
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
-            "img" => "",
-            "description" => "required|min:5|max:255",
-            "group" => "boolean",
-            "date" => "required",
-            "type_id" => "required",
-            'languages' => 'array',
-            'languages.*' => 'exists:languages,id',
+            "img" => "image",
+            "description" => "nullable|min:100",
+            "git_URL" => "required",
+            "date" => "required|date",
+            "type_id" => "required|exists:types,id",
+            'languages' => "required|array",
+            //OGNI ELEMENTO DELL'ARRAY DEVE ESSERE NELLA TABELLA LANGUAGES
+            'languages.*' => "exists:languages,id",
         ]);
 
         //CREO L'OGGETTO
         $newProject = new Project();
 
+        //SE IL CAMPO HA SCRITTO QUALCOSA ALLORA SALVALO
         if ($request->has('img')) {
             $image_path = Storage::put('uploads', $request->img);
             $data['img'] = $image_path;
@@ -74,7 +76,7 @@ class ProjectController extends Controller
         //SALVO SUL DB
         $newProject->save();
 
-        //L'ATTACH SI FA DOPO IL SAVE
+        //L'ATTACH SI FA DOPO IL SAVE E COLLEGA LE DUE TABELLE
         if (isset($data['languages'])) {
             $newProject->languages()->attach($data['languages']);
         }
@@ -118,13 +120,14 @@ class ProjectController extends Controller
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
-            "img" => "",
-            "description" => "required|min:5|max:255",
-            "group" => "boolean",
-            "date" => "required",
-            "type_id" => "required",
-            'languages' => 'array',
-            'languages.*' => 'exists:languages,id',
+            "img" => "image",
+            "description" => "nullable|min:100",
+            "git_URL" => "required",
+            "date" => "required|date",
+            "type_id" => "required|exists:types,id",
+            'languages' => "required|array",
+            //OGNI ELEMENTO DELL'ARRAY DEVE ESSERE NELLA TABELLA LANGUAGES
+            'languages.*' => "exists:languages,id",
         ]);
 
         if ($project->img && !Str::startsWith($project->img, 'http')) {

@@ -18,7 +18,18 @@
 
 		<div class="mb-3">
 			<label class="form-label">Titolo:</label>
-			<input type="text" class="form-control" name="name_project">
+			<input type="text" class="form-control @error('name_project') is-invalid @enderror" name="name_project" required>
+			@error('name_project')
+				<div class="form-text text-danger">{{ $message }}</div>
+			@enderror
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">URL repo:</label>
+			<input class="form-control @error('git_URL') is-invalid @enderror" name="git_URL" required>
+			@error('git_URL')
+				<div class="form-text text-danger">{{ $message }}</div>
+			@enderror
 		</div>
 
 		<div class="mb-3">
@@ -34,19 +45,25 @@
 		<div class="row">
 			<div class="mb-3 col-2">
 				<label class="form-label">Data:</label>
-				<input type="date" class="form-control" name="date">
+				<input type="date" class="form-control @error('date') is-invalid @enderror" name="date" required>
+				@error('date')
+					<div class="form-text text-danger">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="mb-3 col-3">
 				<label class="form-label">Tipo:</label>
 				<div>
-					<select name="type_id" class="form-select" required autofocus>
+					<select name="type_id" class="form-select @error('type') is-invalid @enderror" required autofocus>
 						<option value="" selected></option>
 						@foreach ($types as $type)
 							<option value="{{ $type->id }}">{{ $type->name }}</option>
 						@endforeach
 					</select>
 				</div>
+				@error('type')
+					<div class="form-text text-danger">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="mb-4 row">

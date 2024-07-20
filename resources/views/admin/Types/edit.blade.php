@@ -25,7 +25,11 @@
 
 					<div class="mb-3">
 						<label class="form-label">Nome:</label>
-						<input class="form-control" name="name" value="{{ $type->name }}">
+						<input class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $type->name }}"
+							required>
+						@error('name')
+							<div class="form-text text-danger">{{ $message }}</div>
+						@enderror
 					</div>
 
 					<div class="mb-3">
