@@ -18,10 +18,18 @@ class ProjectController extends Controller
 
     public function favorite()
     {
-        return response()->json([
-            'success' => true,
-            "projects" => Project::with(['type'])->where('favorite', true)->take(3)->get()
-        ]);
+        $project = Project::with('type')->where('favorite', true)->take(3)->get();
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                "projects" => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'nessun favorito'
+            ]);
+        }
     }
 
     public function show($slug)

@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('projects', [ProjectController::class, 'index']);
+//MESSO SOPRA A {PROJECT:ID} PERCHè LAVARVEL ALTRIMENTI ENTRA IN QUELLO LI INVECE CHE IN FAVORITE
+Route::get('projects/favorite', [ProjectController::class, 'favorite']);
 Route::get('projects/{project:id}', [ProjectController::class, 'show']);
