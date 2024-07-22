@@ -16,6 +16,14 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function favorite()
+    {
+        return response()->json([
+            'success' => true,
+            "projects" => Project::with(['type'])->where('favorite', true)->take(3)->get()
+        ]);
+    }
+
     public function show($slug)
     {
         $project = Project::with('type')->where('slug', $slug)->first();

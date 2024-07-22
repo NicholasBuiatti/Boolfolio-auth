@@ -52,6 +52,19 @@
 			</div>
 
 			<div class="mb-3 col-3">
+				<div class="form-check">
+					<input class="form-check-input @error('favorite') is-invalid @enderror" type="checkbox" name='favorite'
+						value="1" id="favoriteButton">
+					<label class="form-check-label" for="favoriteButton">
+						Preferito
+					</label>
+				</div>
+				@error('favorite')
+					<div class="form-text text-danger">{{ $message }}</div>
+				@enderror
+			</div>
+
+			<div class="mb-3 col-3">
 				<label class="form-label">Tipo:</label>
 				<div>
 					<select name="type_id" class="form-select @error('type') is-invalid @enderror" required autofocus>

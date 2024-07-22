@@ -70,9 +70,12 @@ class ProjectController extends Controller
             $data['img'] = $image_path;
         }
 
+        $data['favorite'] = $request->has('favorite') ? 1 : 0;
+
         //POPOLO L'OGGETTO CREANDO L'ISTANZA
         $newProject->fill($data);
 
+        $newProject['slug'] = $newProject['name_project'];
         //SALVO SUL DB
         $newProject->save();
 

@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
 
             $table->char('name_project', 100);
-            $table->string('slug')->nullable();
+            $table->string('slug');
             $table->text('img')->nullable();
             $table->text('description')->nullable();
             $table->text('git_URL');
             $table->date('date');
+            $table->boolean('favorite')->default(0);
 
             $table->timestamps();
         });

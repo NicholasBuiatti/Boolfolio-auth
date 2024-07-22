@@ -18,6 +18,7 @@
 						<li>{{ $language->name }}</li>
 					@endforeach
 				</ul>
+				<p class="card-text">Favorito: {{ $project->favorite }}</p>
 
 				</p>
 				{{-- RIPORTO IN ROUTE IL LINK DA SCRIVERE NELL'URL PER APRIRE LA PAGINA --}}
