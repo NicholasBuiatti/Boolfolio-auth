@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//CREO LA MIGRATION PER SALVARE I MESSAGGI E RELATIVI DATI PRESI DAL FORM IN UN DB
 return new class extends Migration
 {
     /**

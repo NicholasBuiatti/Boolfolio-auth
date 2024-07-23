@@ -27,9 +27,10 @@ class NewLeadMessage extends Mailable
      */
     public function envelope(): Envelope
     {
+        //RITORNO UN OGGETTO CHE DEFINISCE IL MESSAGGIO DI E A CHI VIENE INVIATO
         return new Envelope(
             subject: 'New Lead Message',
-            replyTo: $this->lead->message,
+            replyTo: $this->lead->email,
         );
     }
 
@@ -38,6 +39,7 @@ class NewLeadMessage extends Mailable
      */
     public function content(): Content
     {
+        //FA VEDERE NELLA VIEW CREATA L'EMAIL
         return new Content(
             markdown: 'make:mail',
             view: 'mail.NewLeadMessage'
