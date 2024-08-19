@@ -17,25 +17,25 @@ class LanguageSeeder extends Seeder
         $language = new Language();
         $language->name = "PHP";
         $language->description = "bal bla bla";
-        $language->icon = "so so so";
+        $language->icon = "fa-brands fa-php";
         $language->save();
 
         $language = new Language();
         $language->name = "JS";
         $language->description = "bal bla bla";
-        $language->icon = "so so so";
+        $language->icon = "fa-brands fa-js";
         $language->save();
 
         $language = new Language();
-        $language->name = "C++";
-        $language->description = "bal bla bla";
-        $language->icon = "so so so";
+        $language->name = "Vue.js";
+        $language->description = "fa-brands fa-vuejs";
+        $language->icon = "fa-brands fa-vuejs";
         $language->save();
 
         $language = new Language();
         $language->name = "Paython";
         $language->description = "bal bla bla";
-        $language->icon = "so so so";
+        $language->icon = "fa-brands fa-python";
         $language->save();
     }
 }
