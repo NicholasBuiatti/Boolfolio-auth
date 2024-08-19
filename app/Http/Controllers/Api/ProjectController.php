@@ -34,7 +34,7 @@ class ProjectController extends Controller
 
     public function show($slug)
     {
-        $project = Project::with('type')->where('slug', $slug)->first();
+        $project = Project::with('type')->with('languages')->where('slug', $slug)->first();
 
         if ($project) {
             return response()->json([
