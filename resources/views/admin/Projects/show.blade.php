@@ -9,7 +9,7 @@
 				<strong>{{ session('message') }}</strong>
 			</div>
 		@endif
-		<p>{{ $project }}</p>
+		{{-- <p>{{ $project }}</p> --}}
 		<div class="row">
 			<div class="col-6">
 				<img src="{{ $project->img }}" class="container-fluid">
@@ -18,40 +18,34 @@
 				<h1>{{ $project->name_project }}</h1>
 				<p class="">{{ $project->description }}</p>
 				<div class="card-footer text-muted text-end">
+					@if ($project->favorite == true)
+						<i class="fa-solid fa-heart text-danger fs-5"></i>
+					@endif
+
 					Sviluppo: {{ $project->type->name }}
 				</div>
 			</div>
 		</div>
 		<hr>
 		<div class="row">
-			<ul>
-				@foreach ($project->languages as $language)
-					<li>{{ $language->name }}</li>
-				@endforeach
-			</ul>
+			<div class="col-6 border-end">
+				<p>Creazione progetto: {{ $project->date }}</p>
+				<p>Vai al progetto su GitHub cliccando <a href="{{ $project->git_URL }}">QUI</a>.</p>
+				<a href="{{ route('admin.project.index') }}" class="btn btn-primary" role="button">
+					<i class="fa-solid fa-arrow-left"></i>
+				</a>
+				<a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning" role="button">
+					<i class="fa-solid fa-pen"></i>
+				</a>
+			</div>
+			<div class="col-6">
+				<h5>Linguaggi e Framework usati:</h5>
+				<ul class="list-unstyled">
+					@foreach ($project->languages as $language)
+						<li><i class="{{ $language->icon }} me-2 fs-4"></i>{{ $language->name }}</li>
+					@endforeach
+				</ul>
+			</div>
 		</div>
-	</div>
-
-	{{-- <div class="card mt-5">
-		<img
-			src="{{ $project->img = Str::startsWith($project->img, 'https') ? $project->img : asset('storage/' . $project->img) }}"
-			class="card-img-top" alt="" style="height: 18rem">
-		<div class="card-body">
-			<h5 class="card-title">{{ $project->name_project }}</h5>
-			<p class="card-text">{{ $project->description }}</p>
-			<p class="card-text my-4">
-				Categoria: <a href="{{ route('admin.type.show', $project->id) }}">{{ $project->type->name }}</a>
-			</p>
-			<p>linguaggio
-			<ul>
-				@foreach ($project->languages as $language)
-					<li>{{ $language->name }}</li>
-				@endforeach
-			</ul>
-
-			</p>
-			<p class="card-text"><small class="text-muted">{{ $project->date }}</small></p>
-		</div>
-	</div> --}}
 	</div>
 @endsection
