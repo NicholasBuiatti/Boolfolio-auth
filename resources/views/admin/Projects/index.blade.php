@@ -1,10 +1,13 @@
 @extends('layouts.NavAdmin')
 
 @section('content')
+	<div class="row justify-content-between">
+		<h1 class="col-6">Lista Progetti:</h1>
+		<a class="col-2 btn btn-success" href="{{ route('admin.project.create') }}">
+			<i class="fa-solid fa-plus fa-lg fa-fw"></i>Nuovo progetto
+		</a>
+	</div>
 	<table class="table caption-top">
-		<caption>
-			<h1>Lista Progetti:</h1>
-		</caption>
 		<thead>
 			<tr class="text-center">
 				<th scope="col">IMMAGINE</th>
