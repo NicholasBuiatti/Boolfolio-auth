@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.NavAdmin')
 
 @section('content')
 	<h1>Aggiungi un nuovo progetto</h1>

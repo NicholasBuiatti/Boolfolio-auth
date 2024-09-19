@@ -91,8 +91,11 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show($id)
     {
+        $project = Project::with('languages')->findOrFail($id);
+        $project->img = Str::startsWith($project->img, 'https') ? $project->img : asset('storage/' . $project->img);
+
         $data = [
             "project" => $project,
         ];

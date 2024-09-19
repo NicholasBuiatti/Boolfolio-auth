@@ -15,25 +15,51 @@ class Language_ProjectTableSeeder extends Seeder
     {
         $data = [];
         $combNum = [];
+        $projectLangCount = array_fill(1, 10, 0); // Inizializza un array per contare le lingue per ogni progetto
 
         while (count($data) < 20) {
             $projectId = rand(1, 10);
             $languageId = rand(1, 4);
 
-            // ASSEMBLO I DUE NUMERI E LI SALVO IN UNA VARIABILE
+            // Assembla i due numeri e salvali in una variabile
             $concNum = $projectId . '-' . $languageId;
 
-            // VERIFICA SE LA COPPIA ESISTE GIà
+            // Controlla se la combinazione esiste già
             if (!in_array($concNum, $combNum)) {
-                $data[] = [
-                    'project_id' => $projectId,
-                    'language_id' => $languageId,
-                ];
+                // Assicurati che ogni progetto abbia almeno 2 lingue
+                if ($projectLangCount[$projectId] < 2 || count($data) < 20) {
+                    $data[] = [
+                        'project_id' => $projectId,
+                        'language_id' => $languageId,
+                    ];
 
-                // SE NON ESISTE GIà AGGIUNGO IL NUMERO ALL'ARRAY DEI NUMERI COMBINATI
-                $combNum[] = $concNum;
+                    // Se non esiste già, aggiungi il numero all'array delle combinazioni
+                    $combNum[] = $concNum;
+
+                    // Incrementa il conteggio delle lingue per il progetto
+                    $projectLangCount[$projectId]++;
+                }
             }
         }
+
+        // Assicurati che ogni progetto abbia almeno 2 lingue
+        foreach ($projectLangCount as $projectId => $count) {
+            while ($count < 2) {
+                $languageId = rand(1, 4);
+                $concNum = $projectId . '-' . $languageId;
+
+                if (!in_array($concNum, $combNum)) {
+                    $data[] = [
+                        'project_id' => $projectId,
+                        'language_id' => $languageId,
+                    ];
+
+                    $combNum[] = $concNum;
+                    $count++;
+                }
+            }
+        }
+
         DB::table('language_project')->insert($data);
     }
 }
