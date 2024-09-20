@@ -20,19 +20,20 @@
 </head>
 
 <body>
-	<div id="app">
+	<div id="app" style="background-color: #f8f5e1;">
+		<div class="vh-100">
+			<nav class="width-100 px-5 d-flex justify-content-center align-items-center">
+				<a class="navbar-brand align-items-center" href="{{ url('/') }}">
+					<div class="logo_laravel">
+						<img height="200px" src="{{ asset('NbPortfolioLogo.png') }}" alt="">
+					</div>
+				</a>
+			</nav>
 
-		<nav class="width-100 px-5 d-flex justify-content-center align-items-center">
-			<a class="navbar-brand align-items-center" href="{{ url('/') }}">
-				<div class="logo_laravel">
-					<img height="200px" src="{{ asset('NbPortfolioLogo.png') }}" alt="">
-				</div>
-			</a>
-		</nav>
-
-		<main class="">
-			@yield('content')
-		</main>
+			<main class="">
+				@yield('content')
+			</main>
+		</div>
 	</div>
 </body>
 

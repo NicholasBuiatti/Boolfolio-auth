@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Lead;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -21,6 +22,7 @@ class NewLeadMessage extends Mailable
     {
         $this->lead = $lead;
     }
+
 
     /**
      * Get the message envelope.
@@ -45,7 +47,6 @@ class NewLeadMessage extends Mailable
             view: 'mail.NewLeadMessage'
         );
     }
-
     /**
      * Get the attachments for the message.
      *

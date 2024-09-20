@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController; //<---- Import del controlle
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Guest\UserController;
 
 /*
@@ -39,6 +40,8 @@ Route::middleware(['auth'])
         Route::resource("/type", TypeController::class);
 
         Route::resource("/language", LanguageController::class);
+
+        Route::get("/messages", [MessageController::class, 'index'])->name('messages.index');
     });
 
 require __DIR__ . '/auth.php';

@@ -50,9 +50,8 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark"
-										style="{{ Route::currentRouteName() == 'admin.type.index' ? 'background-color: #EDEAE0;' : '' }}"
-										href="{{ route('admin.type.index') }}">
+									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.messages.index' ? 'myBG' : '' }}"
+										href="{{ route('admin.messages.index') }}">
 										<i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messaggi
 									</a>
 								</li>
