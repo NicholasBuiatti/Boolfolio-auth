@@ -38,21 +38,22 @@
 							<hr>
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.dashboard' ? 'myBG' : '' }}"
 										href="{{ route('admin.dashboard') }}">
-										<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+										<i class="fa-solid fa-gauge-high fa-lg fa-fw"></i></i> Dashboard
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary' : '' }}"
+									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.project.index' ? 'myBG' : '' }}"
 										href="{{ route('admin.project.index') }}">
-										<i class="fa-solid fa-table-list fa-lg fa-fw"></i> Progetti
+										<i class="fa-solid fa-list-check fa-lg fa-fw"></i></i> Progetti
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary' : '' }}"
+									<a class="nav-link text-dark"
+										style="{{ Route::currentRouteName() == 'admin.type.index' ? 'background-color: #EDEAE0;' : '' }}"
 										href="{{ route('admin.type.index') }}">
-										<i class="fa-solid fa-keyboard fa-lg fa-fw"></i> Types of Works
+										<i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messaggi
 									</a>
 								</li>
 							</ul>
@@ -84,7 +85,8 @@
 					</div>
 				</nav>
 
-				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 overflow-auto py-4" style="height: 100vh">
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 overflow-auto py-4"
+					style="height: 100vh; background-color: rgb(240, 240, 240)">
 					@yield('content')
 				</main>
 			</div>
@@ -93,3 +95,11 @@
 </body>
 
 </html>
+
+<style>
+	.myBG {
+		background-color: #E1C699;
+		text-decoration: underline;
+		border: 2px solid #C2A679;
+	}
+</style>
