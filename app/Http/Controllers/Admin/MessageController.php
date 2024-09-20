@@ -28,7 +28,7 @@ class MessageController extends Controller
             "message" => $message
         ];
 
-        return view("");
+        return view("mail.show", $data);
     }
 
 

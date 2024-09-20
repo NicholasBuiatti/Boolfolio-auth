@@ -42,6 +42,7 @@ Route::middleware(['auth'])
         Route::resource("/language", LanguageController::class);
 
         Route::get("/messages", [MessageController::class, 'index'])->name('messages.index');
+        Route::get("/messages/{message}", [MessageController::class, 'show'])->name('message.show');
     });
 
 require __DIR__ . '/auth.php';
