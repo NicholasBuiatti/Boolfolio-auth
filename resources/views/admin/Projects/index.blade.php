@@ -4,8 +4,8 @@
 	<div class="row justify-content-between">
 		<h1 class="col-6">Lista Progetti:</h1>
 
-		<div class="col-2 d-flex align-items-center">
-			<a class="btn btn-success text-dark" id="btnCreate" href="{{ route('admin.project.create') }}">
+		<div class="col-2 d-flex align-items-center justify-content-end">
+			<a class="btn btn-dark text-dark" id="btnCreate" href="{{ route('admin.project.create') }}">
 				Nuovo progetto
 			</a>
 		</div>

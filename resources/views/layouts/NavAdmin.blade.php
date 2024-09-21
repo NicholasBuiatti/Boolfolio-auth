@@ -55,6 +55,18 @@
 										<i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messaggi
 									</a>
 								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.language.index' ? 'myBG' : '' }}"
+										href="{{ route('admin.language.index') }}">
+										<i class="fa-solid fa-code fa-lg fa-fw"></i> Linguaggi
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.type.index' ? 'myBG' : '' }}"
+										href="{{ route('admin.type.index') }}">
+										<i class="fa-solid fa-laptop-code fa-lg fa-fw"></i> Tipologia
+									</a>
+								</li>
 							</ul>
 						</div>
 						<div class="mb-3">
