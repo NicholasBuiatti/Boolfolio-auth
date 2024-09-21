@@ -18,7 +18,7 @@ class ProjectController extends Controller
 
     public function favorite()
     {
-        $project = Project::with('type')->where('favorite', true)->take(3)->get();
+        $project = Project::with('type')->where('favorite', true)->take(5)->get();
         if ($project) {
             return response()->json([
                 'success' => true,
