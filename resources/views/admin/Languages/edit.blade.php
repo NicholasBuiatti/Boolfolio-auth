@@ -45,7 +45,7 @@
 
 
 					<div class="mb-3">
-						<a href="{{ route('admin.language.show', $language) }}" class="btn btn-primary">Annulla</a>
+						<a href="{{ route('admin.language.index') }}" class="btn btn-primary">Annulla</a>
 						<button type="submit" class="btn btn-primary">Salva</a>
 					</div>
 

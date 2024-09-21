@@ -44,25 +44,29 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.project.index' ? 'myBG' : '' }}"
+									<a
+										class="nav-link text-dark {{ Route::currentRouteName() == 'admin.project.index' || Route::currentRouteName() == 'admin.project.show' || Route::currentRouteName() == 'admin.project.create' || Route::currentRouteName() == 'admin.project.edit' ? 'myBG' : '' }}"
 										href="{{ route('admin.project.index') }}">
 										<i class="fa-solid fa-list-check fa-lg fa-fw"></i></i> Progetti
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.messages.index' ? 'myBG' : '' }}"
+									<a
+										class="nav-link text-dark {{ Route::currentRouteName() == 'admin.messages.index' || Route::currentRouteName() == 'admin.messages.show' ? 'myBG' : '' }}"
 										href="{{ route('admin.messages.index') }}">
 										<i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messaggi
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.language.index' ? 'myBG' : '' }}"
+									<a
+										class="nav-link text-dark {{ Route::currentRouteName() == 'admin.language.index' || Route::currentRouteName() == 'admin.language.show' || Route::currentRouteName() == 'admin.language.create' || Route::currentRouteName() == 'admin.language.edit' ? 'myBG' : '' }}"
 										href="{{ route('admin.language.index') }}">
 										<i class="fa-solid fa-code fa-lg fa-fw"></i> Linguaggi
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-dark {{ Route::currentRouteName() == 'admin.type.index' ? 'myBG' : '' }}"
+									<a
+										class="nav-link text-dark {{ Route::currentRouteName() == 'admin.type.index' || Route::currentRouteName() == 'admin.type.show' || Route::currentRouteName() == 'admin.type.create' || Route::currentRouteName() == 'admin.type.edit' ? 'myBG' : '' }}"
 										href="{{ route('admin.type.index') }}">
 										<i class="fa-solid fa-laptop-code fa-lg fa-fw"></i> Tipologia
 									</a>
