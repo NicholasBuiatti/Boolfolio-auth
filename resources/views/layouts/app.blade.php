@@ -24,7 +24,7 @@
 		<div class="vh-100">
 			<nav class="width-100 px-5 d-flex justify-content-center align-items-center">
 				<a class="navbar-brand align-items-center" href="{{ url('/') }}">
-					<div class="logo_laravel">
+					<div class="logo_laravel py-3">
 						<img height="200px" src="{{ asset('NbPortfolioLogo.png') }}" alt="">
 					</div>
 				</a>

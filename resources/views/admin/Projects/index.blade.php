@@ -27,6 +27,7 @@
 						<img
 							src="{{ $project->img = Str::startsWith($project->img, 'https') ? $project->img : asset('storage/' . $project->img) }}"
 							class="shadow" style="height: 6rem; width:12rem; object-fit: cover;" alt="immagine-progetto">
+
 					</td>
 					<td class="text-start">
 						<h5 class="fs-3">{{ $project->name_project }}</h5>
