@@ -38,7 +38,7 @@ class LeadController extends Controller
         $new_lead->save();
 
         // INVIO L'EMAIL AL PROPRIETARIO DEL SITO
-        Mail::to('info@boolpress.com')->send(new NewLeadMessage($new_lead));
+        // Mail::to('info@boolpress.com')->send(new NewLeadMessage($new_lead));
 
         //SE TUTTO HA FUNZIONATO LA RISPOSTA AVRà SUCCESS TRUE
         return response()->json([
