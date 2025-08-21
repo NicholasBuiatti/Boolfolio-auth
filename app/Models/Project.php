@@ -18,6 +18,7 @@ class Project extends Model
         "git_URL",
         "date",
         "favorite",
+        "visible",
         //METTO IL TYPE ID PER COLLEGARLO ALLA TABELLA TYPE
         "type_id",
     ];
