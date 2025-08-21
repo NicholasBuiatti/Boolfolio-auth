@@ -35,4 +35,9 @@ class Project extends Model
     {
         return $this->belongsToMany(Language::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProjectImage::class);
+    }
 }

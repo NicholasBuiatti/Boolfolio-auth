@@ -90,6 +90,9 @@
 						@enderror
 					</div>
 				</div>
+				<div class="col-6">
+					<input type="file" multiple name="images[]" id="images">
+				</div>
 			</div>
 			<div class="mb-3 col-6">
 				<div class="form-check">

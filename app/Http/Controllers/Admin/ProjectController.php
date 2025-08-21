@@ -57,6 +57,7 @@ class ProjectController extends Controller
             "date" => "required|date",
             "type_id" => "required|exists:types,id",
             'languages' => "required|array",
+            "images" => "required|array",
             //OGNI ELEMENTO DELL'ARRAY DEVE ESSERE NELLA TABELLA LANGUAGES
             'languages.*' => "exists:languages,id",
         ]);
@@ -65,9 +66,20 @@ class ProjectController extends Controller
         $newProject = new Project();
 
         //SE IL CAMPO HA SCRITTO QUALCOSA ALLORA SALVALO
-        if ($request->has('img')) {
-            $image_path = Storage::put('uploads', $request->img);
+        // if ($request->has('img')) {
+        //     $image_path = Storage::put('uploads', $request->img);
+        //     $data['img'] = $image_path;
+        // }
+        if ($request->hasFile('img')) {
+            $image_path = $request->file('img')->store('uploads', 'public');
             $data['img'] = $image_path;
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $image_path = $image->store('uploads', 'public');
+                $data['images'][] = $image_path;
+            }
         }
 
         $data['favorite'] = $request->has('favorite') ? 1 : 0;
@@ -132,22 +144,33 @@ class ProjectController extends Controller
             "date" => "required|date",
             "type_id" => "exists:types,id",
             'languages' => "array",
+            "images" => "array",
             //OGNI ELEMENTO DELL'ARRAY DEVE ESSERE NELLA TABELLA LANGUAGES
             'languages.*' => "exists:languages,id",
         ]);
 
-        if ($request->has('img')) {
-            // save the image
-            $image_path = Storage::put('uploads', $request->img);
+        if ($request->hasFile('img')) {
+            // Salva la nuova immagine
+            $image_path = $request->file('img')->store('uploads', 'public');
             $data['img'] = $image_path;
-
+                
+            // Cancella la vecchia immagine se non è un link esterno
             if ($project->img && !Str::startsWith($project->img, 'http')) {
-
-                // not null and not startingn with http
                 Storage::delete($project->img);
             }
         }
 
+        if ($request->hasFile('images')) {
+            // Cancella le vecchie immagini se necessario
+            if ($project->images) {
+                foreach ($project->images as $oldImage) {
+                    if ($oldImage && !Str::startsWith($oldImage, 'http')) {
+                        Storage::delete($oldImage);
+                    }
+                }
+            }
+        }
+    
         $project->update($data);
 
         if (isset($data['languages'])) {

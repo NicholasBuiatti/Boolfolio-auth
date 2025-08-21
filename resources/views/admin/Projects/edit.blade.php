@@ -105,6 +105,9 @@
 							@enderror
 						</div>
 					</div>
+					<div class="col-3">
+						<input type="file" multiple name="images[]" id="images">
+					</div>
 				</div>
 
 
