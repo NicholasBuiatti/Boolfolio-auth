@@ -171,4 +171,13 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.project.index');
     }
+
+    public function visibility(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $project->visible = $request->input('visible', 0);
+        $project->save();
+    
+        return redirect()->route('admin.project.index')->with('message', 'Visibilità aggiornata!');
+    }
 }
