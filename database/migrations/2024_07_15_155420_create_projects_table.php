@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('git_URL');
             $table->date('date');
             $table->boolean('favorite')->default(0);
+            $table->boolean('visible')->default(0);
 
             $table->timestamps();
         });
