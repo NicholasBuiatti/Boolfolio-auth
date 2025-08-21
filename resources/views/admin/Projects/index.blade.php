@@ -43,6 +43,16 @@
 						@endif
 					</td>
 					<td>
+						<form action="{{ route('admin.project.visibility', $project->id) }}" method="POST" class="d-inline">
+        					@csrf
+        					@method('PATCH')
+        					<input type="hidden" name="visible" value="{{ $project->visible ? 0 : 1 }}">
+        					<button type="submit" class="btn btn-sm {{ $project->visible ? 'btn-success' : 'btn-secondary' }}">
+        					    {{ $project->visible ? 'Visibile' : 'Nascosto' }}
+        					</button>
+    					</form>
+					</td>
+					<td>
 						{{-- RIPORTO IN ROUTE IL LINK DA SCRIVERE NELL'URL PER APRIRE LA PAGINA --}}
 						<a href="{{ route('admin.project.show', $project) }}" class="btn border" id="btnShow" href="#"
 							role="button">
