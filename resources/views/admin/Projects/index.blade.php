@@ -42,15 +42,26 @@
 							<i class="fa-regular fa-heart text-danger fs-5"></i>
 						@endif
 					</td>
+					<!-- //////////////////////////////////////////////////  CONTROLLARE  /////////////////////////////////////////////////////// -->
 					<td>
 						<form action="{{ route('admin.project.visibility', $project->id) }}" method="POST" class="d-inline">
-        					@csrf
-        					@method('PATCH')
-        					<input type="hidden" name="visible" value="{{ $project->visible ? 0 : 1 }}">
-        					<button type="submit" class="btn btn-sm {{ $project->visible ? 'btn-success' : 'btn-secondary' }}">
-        					    {{ $project->visible ? 'Visibile' : 'Nascosto' }}
-        					</button>
-    					</form>
+						    @csrf
+						    @method('PATCH')
+						    <button type="submit" class="btn btn-sm {{ $project->visible ? 'btn-success' : 'btn-secondary' }}">
+						        {{ $project->visible ? 'Visibile' : 'Nascosto' }}
+						    </button>
+						</form>
+
+						<!-- Form per il preferito -->
+						<form action="{{ route('admin.project.favorite', $project->id) }}" method="POST" class="d-inline">
+						    @csrf
+						    @method('PATCH')
+						    <input type="hidden" name="favorite" value="{{ $project->favorite ? 0 : 1 }}">
+						    <button type="submit" class="btn btn-sm {{ $project->favorite ? 'btn-danger' : 'btn-outline-danger' }}">
+						        <i class="fa{{ $project->favorite ? '-solid' : '-regular' }} fa-heart"></i>
+						        {{ $project->favorite ? 'Preferito' : 'Non preferito' }}
+						    </button>
+						</form>
 					</td>
 					<td>
 						{{-- RIPORTO IN ROUTE IL LINK DA SCRIVERE NELL'URL PER APRIRE LA PAGINA --}}
@@ -109,6 +120,22 @@
 		</tbody>
 	</table>
 	{{ $projects->links('pagination::bootstrap-5') }}
+
+	// Script per la gestione della visibilità
+	<script>
+		document.querySelectorAll('form[action*="visibility"]').forEach(form => {
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+				const button = event.submitter;
+				const isVisible = button.classList.contains('btn-success');
+				button.classList.toggle('btn-success', !isVisible);
+				button.classList.toggle('btn-secondary', isVisible);
+				button.textContent = isVisible ? 'Nascosto' : 'Visibile';
+				form.querySelector('input[name="visible"]').value = isVisible ? 0 : 1;
+				form.submit();
+			});
+		});
+	</script>
 
 	<style>
 		#btnCreate {

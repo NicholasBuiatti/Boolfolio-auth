@@ -111,7 +111,7 @@
 				</div>
 
 
-				<div class="mb-3 col-3">
+				<!-- <div class="mb-3 col-3">
 					<div class="form-check">
 						<input class="form-check-input @error('favorite') is-invalid @enderror" type="checkbox" name='favorite'
 							value="1" id="favoriteButton" @checked(old('favorite', $project->favorite))>
@@ -122,7 +122,7 @@
 					@error('favorite')
 						<div class="form-text text-danger">{{ $message }}</div>
 					@enderror
-				</div>
+				</div> -->
 
 				<div class="mb-3">
 					<a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary">Indietro</a>
