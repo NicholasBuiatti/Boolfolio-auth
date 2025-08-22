@@ -107,6 +107,10 @@ class ProjectController extends Controller
     {
         $project = Project::with('languages')->findOrFail($id);
         $project->img = Str::startsWith($project->img, 'https') ? $project->img : asset('storage/' . $project->img);
+        //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
+        $project->images = $project->images->map(function ($image) {
+            return Str::startsWith($image, 'https') ? $image : asset('storage/' . $image);
+        });
 
         $data = [
             "project" => $project,
@@ -194,13 +198,22 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.project.index');
     }
-
+    //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
     public function visibility(Request $request, $id)
     {
         $project = Project::findOrFail($id);
-        $project->visible = $request->input('visible', 0);
+        $project->visible = !$project->visible;
         $project->save();
     
         return redirect()->route('admin.project.index')->with('message', 'Visibilità aggiornata!');
+    }
+    //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
+    public function favorite(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $project->favorite = !$project->favorite;
+        $project->save();
+
+        return redirect()->route('admin.project.index')->with('message', 'Preferito aggiornato!');
     }
 }
