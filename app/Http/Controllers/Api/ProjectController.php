@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////  SCELTA MULTIPLA TYPE  ///////////////////////////////////////////////////////
     public function index(Request $request)
     {
         $query = Project::with(['type']);
@@ -52,7 +54,7 @@ class ProjectController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Not found'
+                'message' => 'Not found2'
             ]);
         }
     }
@@ -69,8 +71,28 @@ class ProjectController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Not found'
+                'message' => 'Not found1'
             ]);
         }
+    }
+
+    public function types()
+    {
+        $types = Type::select('id', 'name', 'description', 'icon')->get();
+
+        return response()->json([
+            'success' => true,
+            'types' => $types
+        ]);
+    }
+
+    public function languages()
+    {
+        $languages = Language::select('id', 'name', 'description', 'icon')->get();
+
+        return response()->json([
+            'success' => true,
+            'languages' => $languages
+        ]);
     }
 }

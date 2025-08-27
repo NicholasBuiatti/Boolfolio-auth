@@ -198,7 +198,7 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.project.index');
     }
-    //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
+
     public function visibility(Request $request, $id)
     {
         $project = Project::findOrFail($id);
@@ -207,7 +207,7 @@ class ProjectController extends Controller
     
         return redirect()->route('admin.project.index')->with('message', 'Visibilità aggiornata!');
     }
-    //////////////////////////////////////////////////  CONTROLLARE  ///////////////////////////////////////////////////////
+
     public function favorite(Request $request, $id)
     {
         $project = Project::findOrFail($id);

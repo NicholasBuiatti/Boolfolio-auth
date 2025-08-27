@@ -37,6 +37,7 @@ Route::middleware(['auth'])
         //METTO LA RESOURCE ROUTE IN ADMIN CHE MI CAMBIA TUTTE LE ROTTE NEL NOME CHE VOGLIO
         Route::resource('/project', ProjectController::class);
         Route::patch('/project/{id}/visibility', [ProjectController::class, 'visibility'])->name('project.visibility');
+        Route::patch('/project/{id}/favorite', [ProjectController::class, 'favorite'])->name('project.favorite');
 
         Route::resource("/type", TypeController::class);
 

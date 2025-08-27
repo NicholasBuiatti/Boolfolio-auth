@@ -16,7 +16,7 @@
 				<th scope="col">IMMAGINE</th>
 				<th scope="col" class="text-start">NOME PROGETTO</th>
 				<th scope="col">DATA</th>
-				<th scope="col">PREFERITO</th>
+				<th scope="col"></th>
 				<th scope="col">AZIONI</th>
 			</tr>
 		</thead>
@@ -35,14 +35,6 @@
 					<td>
 						<p>{{ $project->date }}</p>
 					</td>
-					<td>
-						@if ($project->favorite == true)
-							<i class="fa-solid fa-heart text-danger fs-5"></i>
-						@else
-							<i class="fa-regular fa-heart text-danger fs-5"></i>
-						@endif
-					</td>
-					<!-- //////////////////////////////////////////////////  CONTROLLARE  /////////////////////////////////////////////////////// -->
 					<td>
 						<form action="{{ route('admin.project.visibility', $project->id) }}" method="POST" class="d-inline">
 						    @csrf
@@ -120,22 +112,6 @@
 		</tbody>
 	</table>
 	{{ $projects->links('pagination::bootstrap-5') }}
-
-	// Script per la gestione della visibilità
-	<script>
-		document.querySelectorAll('form[action*="visibility"]').forEach(form => {
-			form.addEventListener('submit', (event) => {
-				event.preventDefault();
-				const button = event.submitter;
-				const isVisible = button.classList.contains('btn-success');
-				button.classList.toggle('btn-success', !isVisible);
-				button.classList.toggle('btn-secondary', isVisible);
-				button.textContent = isVisible ? 'Nascosto' : 'Visibile';
-				form.querySelector('input[name="visible"]').value = isVisible ? 0 : 1;
-				form.submit();
-			});
-		});
-	</script>
 
 	<style>
 		#btnCreate {

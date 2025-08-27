@@ -22,7 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('projects', [ProjectController::class, 'index']);
 //MESSO SOPRA A {PROJECT:ID} PERCHè LAVARVEL ALTRIMENTI ENTRA IN QUELLO LI INVECE CHE IN FAVORITE
 Route::get('projects/favorite', [ProjectController::class, 'favorite']);
+Route::get('projects/types', [ProjectController::class, 'types']);
+Route::get('projects/languages', [ProjectController::class, 'languages']);
 Route::get('projects/{project:id}', [ProjectController::class, 'show']);
+
 
 //CREO LA ROTTA DA CUI RECUPERO I DATI DAL FRONT END
 Route::post('/contacts', [LeadController::class, 'store']);
