@@ -12,7 +12,8 @@ use App\Http\Controllers\Controller;
 //COMPONENTI PER L'IMPORTAZIONE E VERIFICA IMMAGINI
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Cloudinary\Cloudinary; // TODO INSTALLARE
+//use Cloudinary\Cloudinary;  TODO INSTALLARE
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProjectController extends Controller
 {
@@ -102,6 +103,7 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        // dd(config('filesystems.disks.cloudinary'));
         // VALIDAZIONE
         $data = $request->validate([
             "name_project" => "required|min:3|max:200",
@@ -118,8 +120,9 @@ class ProjectController extends Controller
 
         // GESTIONE IMMAGINE PRINCIPALE
         if ($request->hasFile('img')) {
-            $image_path = $request->file('img')->store('uploads', 'public'); //'projects', 'cloudinary'
-            $data['img'] = $image_path;
+            $publicId = $request->file('img')->store('projects', 'cloudinary');
+            $publicIdNoExt = preg_replace('/\.[^.]+$/', '', $publicId);
+            $data['img'] = Cloudinary::getUrl($publicIdNoExt);
         }
 
         // GESTIONE FAVORITE
@@ -130,8 +133,6 @@ class ProjectController extends Controller
 
         // RIMUOVI I CAMPI CHE NON SONO NEL FILLABLE
         $projectData = collect($data)->except(['languages', 'images',])->toArray();
-        // unset($data['languages']);
-        // unset($data['images']);
 
         // CREA IL PROJECT
         $newProject = Project::create($data);
@@ -144,9 +145,11 @@ class ProjectController extends Controller
         // GESTIONE IMMAGINI MULTIPLE (tramite relazione hasMany)
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $image_path = $image->store('uploads', 'public'); //'projects', 'cloudinary'
+                $publicId = $image->store('projects', 'cloudinary');
+                $publicIdNoExt = preg_replace('/\.[^.]+$/', '', $publicId);
+                $imageUrl = Cloudinary::getUrl($publicIdNoExt);
                 $newProject->images()->create([
-                    'image_url' => $image_path,
+                    'image_url' => $imageUrl,
                     'alt' => 'Immagine del progetto'
                 ]);
             }
@@ -211,7 +214,7 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('img')) {
-            // CANCELLA LA VECCHIA IMMAGINE da Cloudinary
+            // Cancella la vecchia immagine da Cloudinary
             if ($project->img && Str::startsWith($project->img, 'http')) {
                 $cloudinary = new Cloudinary([
                     'cloud' => [
@@ -220,24 +223,28 @@ class ProjectController extends Controller
                         'api_secret' => config('filesystems.disks.cloudinary.api_secret'),
                     ]
                 ]);
-
+            
+                // Estrai il public_id dalla URL
                 $public_id = $this->extractPublicIdFromUrl($project->img);
                 if ($public_id) {
                     $cloudinary->uploadApi()->destroy($public_id);
                 }
             }
-
-            // Salva la nuova immagine
-            $image_path = $request->file('img')->store('projects', 'cloudinary');
-            $data['img'] = $image_path;
+        
+            // Carica la nuova immagine su Cloudinary e salva la URL pubblica
+            $publicId = $request->file('img')->store('projects', 'cloudinary');
+            $publicIdNoExt = preg_replace('/\.[^.]+$/', '', $publicId);
+            $data['img'] = Cloudinary::getUrl($publicIdNoExt);
         }
 
         // GESTIONE IMMAGINI MULTIPLE
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $image_path = $image->store('projects', 'cloudinary');
-                $project->images()->create([
-                    'image_url' => $image_path,
+                $publicId = $image->store('projects', 'cloudinary');
+                $publicIdNoExt = preg_replace('/\.[^.]+$/', '', $publicId);
+                $imageUrl = Cloudinary::getUrl($publicIdNoExt);
+                $newProject->images()->create([
+                    'image_url' => $imageUrl,
                     'alt' => 'Immagine del progetto'
                 ]);
             }

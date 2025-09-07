@@ -14,6 +14,7 @@ class Project extends Model
         "name_project",
         "slug",
         "img",
+        "img_public_id",
         "description",
         "git_URL",
         "date",
