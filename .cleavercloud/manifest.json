@@ -1,0 +1,9 @@
+{
+  "applications": [
+    {
+      "name": "Boolfolio-auth",
+      "type": "php",
+      "document_root": "public"
+    }
+  ]
+}
