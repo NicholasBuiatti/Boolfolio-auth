@@ -1,0 +1,27 @@
+{
+  "deploy": {
+    "pre-deploy": [
+      "composer install --no-dev --optimize-autoloader",
+      "npm ci",
+      "npm run build"
+    ],
+    "post-deploy": [
+      "php artisan config:cache",
+      "php artisan route:cache",
+      "php artisan view:cache"
+    ]
+  },
+  "applications": [
+    {
+      "name": "Boolfolio-auth",
+      "type": "php",
+      "subtype": "laravel",
+      "path": ".",
+      "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://Boolfolio-auth.clever-cloud.com"
+      }
+    }
+  ]
+}
