@@ -19,6 +19,7 @@
       "type": "php",
       "subtype": "laravel",
       "path": ".",
+      "buildpacks": ["heroku/nodejs", "heroku/php"],
       "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
