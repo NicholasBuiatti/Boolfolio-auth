@@ -2,6 +2,8 @@
   "deploy": {
     "pre-deploy": [
         "composer install --no-dev --optimize-autoloader",
+        "npm ci",
+        "npm run build"
     ],
     "postdeploy": [
         "npm ci",
