@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "app_id": "app_283bd263-e131-40ea-a95a-493c23382e81",
+      "org_id": "user_23af9307-901a-4b91-91b4-902aa05095b4",
+      "deploy_url": "https://github.com/NicholasBuiatti/Boolfolio-auth.git",
+      "git_ssh_url": "https://github.com/NicholasBuiatti/Boolfolio-auth.git",
+      "name": "Boolfolio-auth",
+      "alias": "Boolfolio-auth"
+    }
+  ]
+}
