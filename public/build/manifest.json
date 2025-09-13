@@ -7,8 +7,9 @@
       "assets/app.219b38f1.css"
     ]
   },
-  "resources/js/app.css": {
+  "resources/scss/app.scss": {
     "file": "assets/app.219b38f1.css",
-    "src": "resources/js/app.css"
+    "src": "resources/scss/app.scss",
+    "isEntry": true
   }
 }
