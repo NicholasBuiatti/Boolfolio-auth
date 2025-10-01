@@ -1,18 +1,14 @@
 # PHP 8.2 + Apache
 FROM php:8.2-apache
 
-# Installa dipendenze PHP e sistema
+# Installa dipendenze di sistema e PHP
 RUN apt-get update && apt-get install -y \
     git unzip libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
-    libonig-dev pkg-config curl \
+    libonig-dev pkg-config curl nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
 
-# Installa Node.js e npm (LTS)
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs
-
-# Abilita mod_rewrite
+# Abilita mod_rewrite di Apache
 RUN a2enmod rewrite
 
 # Imposta root Apache su public/
@@ -27,17 +23,22 @@ WORKDIR /var/www/html
 # Copia sorgenti Laravel
 COPY . /var/www/html
 
-# Install dependencies Node.js e build Vite
-RUN npm install \
-    && npm run build
+# Installa dipendenze Node e genera assets (Vite)
+RUN npm install && npm run build
 
 # Installa dipendenze PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev \
+    && php artisan view:clear \
+    && php artisan cache:clear \
+    && php artisan config:clear
 
 # Imposta permessi corretti
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/public \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Esponi porta 80
 EXPOSE 80
+
+# Comando di avvio Apache
 CMD ["apache2-foreground"]
