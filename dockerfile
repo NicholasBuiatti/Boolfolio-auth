@@ -28,7 +28,7 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Installa dipendenze PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev || true
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Imposta permessi corretti
 RUN chown -R www-data:www-data /var/www/html \
