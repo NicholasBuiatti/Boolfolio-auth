@@ -27,6 +27,10 @@ WORKDIR /var/www/html
 # Copia sorgenti Laravel
 COPY . /var/www/html
 
+# Install dependencies Node.js e build Vite
+RUN npm install \
+    && npm run build
+
 # Installa dipendenze PHP
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
